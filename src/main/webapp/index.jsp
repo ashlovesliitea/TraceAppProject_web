@@ -12,12 +12,12 @@
     <link href="static/css/index.css?after" rel="stylesheet">
 </head>
 <body>
-<c:if test="${sessionID != null }">
+<c:if test="${ loginResult == -1 || loginResult == 0 }">
 		<script>
-			alert("이미 로그인 중입니다.");
-			location.href = "home.do";
+			alert("아이디 혹은 비밀번호가 틀렸습니다.");
 		</script>
 	</c:if>
+
 <div class="page-container">
        <div class="login-form-container shadow">
          <div class="login-form-right-side">

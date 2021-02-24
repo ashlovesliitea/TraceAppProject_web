@@ -44,8 +44,7 @@ public class loginController extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String id=request.getParameter("id");
-		String pw=request.getParameter("pw");
-		
+		String pw=request.getParameter("pw");		
 		
 		AdminDao aDao=AdminDao.getInstance();
 		int loginResult=aDao.login(id, pw, request);
@@ -54,17 +53,17 @@ public class loginController extends HttpServlet {
 			request.setAttribute("loginResult", loginResult);
 			HttpSession session=request.getSession();
 			session.setAttribute("sessionID", id);
-			out.println("login success");
+		RequestDispatcher rd = request.getRequestDispatcher("/adminpage.jsp");
+			rd.forward(request, response);
 		}
 	else if(loginResult==3) {
 		out.println("not connected");
 	}
-	else if(loginResult==0) {
-		out.println("pw incorrect");
-	}
-		else {
+	else{
 			request.setAttribute("loginResult", loginResult);
-		   out.println("login fail");
+			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+			rd.forward(request, response);
+		 
 		}
 		
 	}
