@@ -1,7 +1,9 @@
 package tracewebproject;
 
 import java.io.IOException;
+import member.*;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,8 +35,15 @@ public class loginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/index.jsp");
-		rd.forward(request, response);
+		request.setCharacterEncoding("UTF-8");
+		 memberDao mDao=memberDao.getInstance();
+		  ArrayList<String> memberlist=mDao.getMemberIdList(request);
+		
+		  request.setAttribute("list", memberlist);
+		
+			RequestDispatcher rd = request.getRequestDispatcher("/adminpage.jsp");
+			rd.forward(request, response);
+			
 	}
 
 	/**
@@ -43,6 +52,10 @@ public class loginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
+		 memberDao mDao=memberDao.getInstance();
+		  ArrayList<String> memberlist=mDao.getMemberIdList(request);
+		
+		  request.setAttribute("list", memberlist);
 		String id=request.getParameter("id");
 		String pw=request.getParameter("pw");		
 		

@@ -16,5 +16,13 @@
 		<url-pattern>/login.do</url-pattern>
 	</servlet-mapping>
 	
+	  <servlet>
+		<servlet-name>memberdata</servlet-name>
+		<servlet-class>member.memberdataController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>memberdata</servlet-name>
+		<url-pattern>/memberdata</url-pattern>
+	</servlet-mapping>
 
 </web-app>
