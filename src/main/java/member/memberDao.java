@@ -125,6 +125,10 @@ import javax.servlet.http.HttpServletRequest;
 		    		dto.setFeet_size(rs.getString("feet_size"));
 		    		dto.setName(rs.getString("name"));
 		    		dto.setPhone(rs.getString("phone"));
+		    		dto.setGender(rs.getString("gender"));
+		    		dto.setHeight(rs.getString("height"));
+		    		dto.setWeight(rs.getString("weight"));
+		    		dto.setJoin_date(rs.getString("join_date"));
 		    	}
 		      
 		    

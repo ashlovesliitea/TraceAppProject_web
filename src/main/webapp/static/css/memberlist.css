@@ -1,0 +1,23 @@
+
+#listul{
+    width:94%;
+    margin-left:2%;
+    list-style:none;
+}
+
+.li:not(:last-child){
+     
+    border-bottom: 1px solid #ccc;
+}
+
+.li{
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:30px;
+   
+}
+
+a:link{text-decoration:none; color:black;}
+a:visited{text-decoration:none; color:black;}
+a:active{text-decoration:none; color:black;}
+a:hover{text-decoration:none; color:black;}

@@ -1,0 +1,36 @@
+*{
+    font-family: 'Alata', sans-serif;
+}
+.row{
+	   border-radius: 10px;
+	   margin-top:50px;
+	    -webkit-box-shadow: 27px 43px 43px -26px rgba(89,89,89,0.39);
+    -moz-box-shadow: 27px 43px 43px -26px rgba(89,89,89,0.39);
+    box-shadow: 27px 43px 43px -26px rgba(89,89,89,0.39);
+   border-radius:solid 1px #6a6b8c;
+   background-color:#ededed;
+   padding:10px;
+}
+
+.logout{
+  margin-top:15px;
+  margin-left:75%;
+  display:flex;	
+}
+
+#logout_ment{
+	margin-top:10px;
+	font-size: 13px;
+}
+#logout_btn{
+	width:60px;
+    height:35px;
+    color:#ededed;
+    border: 0;
+    border-radius: 4px;
+    font-size:8px;
+    font-weight:bold;
+    margin-left:15px;
+   background-color:#6a6b8c;
+}
+

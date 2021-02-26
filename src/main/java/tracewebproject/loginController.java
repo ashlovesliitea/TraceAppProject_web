@@ -65,7 +65,7 @@ public class loginController extends HttpServlet {
 	if(loginResult==1) {
 			request.setAttribute("loginResult", loginResult);
 			HttpSession session=request.getSession();
-			session.setAttribute("sessionID", id);
+			session.setAttribute("id", id);
 		RequestDispatcher rd = request.getRequestDispatcher("/adminpage.jsp");
 			rd.forward(request, response);
 		}

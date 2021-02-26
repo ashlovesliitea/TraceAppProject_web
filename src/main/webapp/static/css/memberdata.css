@@ -1,0 +1,44 @@
+*{
+    font-family: 'Alata', sans-serif;
+}
+.personal_data{
+    margin-top:30px;
+    width:50%;
+  
+}
+
+#datatitle{
+
+ margin-left:35%;
+    margin-bottom:40px;
+    font-weight:bold;
+    
+}
+
+#datalist{
+	margin-left:20%;
+}
+
+.data{
+    font-size:15px;
+    padding-bottom: 20px;
+}
+
+.tab-content {
+    padding: 30px;
+    height: 100%; 
+    background-color:white;
+    border-left: 2px solid #6a6b8c;
+    border-right: 2px solid #6a6b8c;
+    border-bottom:2px solid #6a6b8c;
+    border-radius:0px 0px 10px 10px;
+}
+
+.nav-tabs>.active>a, .nav-tabs>.active>a:hover, .nav-tabs>.active>a:focus {
+    border-color: #6a6b8c;
+    border-bottom-color: transparent;
+}
+.nav-tabs {
+    border-bottom: 2px solid #6a6b8c;
+    border-radius:0px 10px 0px 0px;
+}

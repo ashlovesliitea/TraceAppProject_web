@@ -6,6 +6,35 @@ public class memberDto {
  private String address;
  private String phone;
  private String feet_size;
+ private String gender;
+ private String height;
+ private String weight;
+ private String join_date;
+ 
+public String getGender() {
+	return gender;
+}
+public void setGender(String gender) {
+	this.gender = gender;
+}
+public String getHeight() {
+	return height;
+}
+public void setHeight(String height) {
+	this.height = height;
+}
+public String getWeight() {
+	return weight;
+}
+public void setWeight(String weight) {
+	this.weight = weight;
+}
+public String getJoin_date() {
+	return join_date;
+}
+public void setJoin_date(String join_date) {
+	this.join_date = join_date;
+}
 public String getId() {
 	return id;
 }
