@@ -143,4 +143,40 @@ import javax.servlet.http.HttpServletRequest;
 		
 	 
 	}
+	  
+	  public measureDto getMeasureDto(String id,HttpServletRequest req){
+		    
+			measureDto dto=new measureDto();
+		
+			  conn=this.getConnection(req);
+			    if(conn!=null) {
+			    String query="select * from measure_db where id=? AND admin_send='true' ";
+			    try {
+			    	pstmt=conn.prepareStatement(query);
+			       pstmt.setString(1,id);
+			    	rs=pstmt.executeQuery();
+			          if(rs.next()) {
+			    		dto.setId(id);
+			    		dto.setMeasure_date(rs.getString("measure_date"));
+			    		dto.setFolderpath(rs.getString("folderpath"));
+			    		dto.setHeel(rs.getString("heel"));
+			    		dto.setArch(rs.getString("arch"));
+			    		dto.setAdmin_send(rs.getString("admin_send"));
+			    		
+			    	}else {
+			    		dto.setId("notmeasured");
+			    	}
+			      
+			    
+			    	}catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						this.close(conn, pstmt, rs);
+					}
+			
+			    }
+				return dto;
+			
+		 
+		}
 }

@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <%
    memberDto mDto=(memberDto)request.getAttribute("mDto");
+ 
    String name=mDto.getName();
    String id=mDto.getId();
    String feet_size=mDto.getFeet_size();
@@ -56,7 +57,19 @@
                               </div>
                               <div class="tab-pane fade" id="tab2">
                                  <h1>측정 결과</h1>
-                                 <img id="img" width="400" height="500"></div>
+                                 <%
+                                  Boolean measureResult=(Boolean)request.getAttribute("measureResult");
+                                 String folderpath=null;
+                                 if(measureResult==false){
+                                	 %><h3>아직 측정 결과가 없습니다.</h3><% 
+                                 }else{
+                                	 measureDto measureDto=(measureDto)request.getAttribute("measureDto");
+                                	 //folderpath=measureDto.getFolderpath();
+                                	 folderpath+="0.jpg";
+                                   %>
+                                   
+                               <div id="image"></div></div>
+                                 <%} %>
                               </div>
                            </div>
                         </div>
@@ -64,7 +77,7 @@
 
 <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase.js"></script>
 <script>
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -81,23 +94,43 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+  var path="<%=folderpath%>";
+ console.log(path);
+  var image=document.getElementById("image");
   var storage=firebase.storage();
   var storageRef=storage.ref();
-  var tangRef=storageRef.child('snowball.png');
- 
-  
-//First we sign in the user anonymously
-  firebase.auth().signInAnonymously().then(function() {
-    // Once the sign in completed, we get the download URL of the image
-    tangRef.getDownloadURL().then(function(url)                             {
-      // Once we have the download URL, we set it to our img element
-      document.querySelector('img').src = url;
-      
-    }).catch(function(error) {
-      // If anything goes wrong while getting the download URL, log the error
-      console.error(error);
-    });
+  example();
+  function example(){
+
+   var listRef = storageRef.child('uploads/rhalwls');
+   var i=0;
+// Find all the prefixes and items.
+listRef.listAll().then(function(res) {
+
+  res.items.forEach(function(itemRef) {
+    // All the items under listRef.
+    console.log(itemRef.toString());
+    var img=document.createElement("img");
+    img.id=itemRef.toString();
+    image.appendChild(img);
+    i++;
+   displayImage(i,itemRef);
   });
+}).catch(function(error) {
+  // Uh-oh, an error occurred!
+  console.error(error);
+});
+  }
+
+function displayImage(row,images){
+  images.getDownloadURL().then(function(url){
+    
+      var img=document.getElementById(images.toString());
+      img.src=url;
+      console.log(img.src);
+     
+  });
+}
 </script>    
           
 

@@ -3,6 +3,8 @@
     width:94%;
     margin-left:2%;
     list-style:none;
+    height:35em;
+    overflow:auto;
 }
 
 .li:not(:last-child){

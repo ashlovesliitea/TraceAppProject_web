@@ -33,6 +33,20 @@ public class memberdataController extends HttpServlet {
 	  String id=request.getParameter("id");
 	  memberDao mDao=memberDao.getInstance();
 	  memberDto mDto=mDao.getMemberDto(id, request);
+	  
+	  measureDto measureDto=mDao.getMeasureDto(id,request);
+	  String mId=measureDto.getId();
+	  Boolean measureResult;
+	  
+	  if(mId.equals("notmeasured")) {
+		 measureResult=false;
+		  request.setAttribute("measureResult", measureResult);
+	  }else {
+		  measureResult=true;
+		  System.out.println(measureDto.getFolderpath());
+		  request.setAttribute("measureresult",measureResult);
+		  request.setAttribute("measureDto", measureDto);
+	  }
        request.setAttribute("mDto", mDto);
    	RequestDispatcher rd = request.getRequestDispatcher("/memberdata.jsp");
 	rd.forward(request, response);
