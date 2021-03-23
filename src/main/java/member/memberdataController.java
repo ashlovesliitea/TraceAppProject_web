@@ -1,6 +1,8 @@
 package member;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import member.*;
 
 import javax.servlet.RequestDispatcher;
@@ -34,18 +36,18 @@ public class memberdataController extends HttpServlet {
 	  memberDao mDao=memberDao.getInstance();
 	  memberDto mDto=mDao.getMemberDto(id, request);
 	  
-	  measureDto measureDto=mDao.getMeasureDto(id,request);
-	  String mId=measureDto.getId();
+	  ArrayList<measureDto>measureList=mDao.getMeasureDto(id,request);
+	 
 	  Boolean measureResult;
 	  
-	  if(mId.equals("notmeasured")) {
+	  if(measureList.size()==0) {
 		 measureResult=false;
 		  request.setAttribute("measureResult", measureResult);
 	  }else {
 		  measureResult=true;
-		  System.out.println(measureDto.getFolderpath());
-		  request.setAttribute("measureresult",measureResult);
-		  request.setAttribute("measureDto", measureDto);
+		
+		  request.setAttribute("measureResult",measureResult);
+		  request.setAttribute("measureList", measureList);
 	  }
        request.setAttribute("mDto", mDto);
    	RequestDispatcher rd = request.getRequestDispatcher("/memberdata.jsp");

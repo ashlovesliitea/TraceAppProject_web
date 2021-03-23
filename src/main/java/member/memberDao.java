@@ -144,9 +144,9 @@ import javax.servlet.http.HttpServletRequest;
 	 
 	}
 	  
-	  public measureDto getMeasureDto(String id,HttpServletRequest req){
+	  public ArrayList<measureDto> getMeasureDto(String id,HttpServletRequest req){
 		    
-			measureDto dto=new measureDto();
+			ArrayList<measureDto>measureList=new ArrayList<>();
 		
 			  conn=this.getConnection(req);
 			    if(conn!=null) {
@@ -155,16 +155,17 @@ import javax.servlet.http.HttpServletRequest;
 			    	pstmt=conn.prepareStatement(query);
 			       pstmt.setString(1,id);
 			    	rs=pstmt.executeQuery();
-			          if(rs.next()) {
+			    	measureDto dto=new measureDto();
+			          while(rs.next()) {
+			        	  
 			    		dto.setId(id);
 			    		dto.setMeasure_date(rs.getString("measure_date"));
 			    		dto.setFolderpath(rs.getString("folderpath"));
 			    		dto.setHeel(rs.getString("heel"));
 			    		dto.setArch(rs.getString("arch"));
 			    		dto.setAdmin_send(rs.getString("admin_send"));
-			    		
-			    	}else {
-			    		dto.setId("notmeasured");
+			    	   System.out.println(dto.getFolderpath());
+			    		measureList.add(dto);
 			    	}
 			      
 			    
@@ -175,7 +176,7 @@ import javax.servlet.http.HttpServletRequest;
 					}
 			
 			    }
-				return dto;
+				return measureList;
 			
 		 
 		}

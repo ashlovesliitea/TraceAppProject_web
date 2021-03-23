@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="java.sql.*,tracewebproject.*,javax.sql.*,java.io.*,org.json.simple.*"%>
+    <%@page import="java.sql.*,java.util.*,member.*,tracewebproject.*,javax.sql.*,java.io.*,org.json.simple.*"%>
+ <jsp:useBean id="mDao" class="member.memberDao"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@ String id=(String)request.getParameter("id");
    System.out.println(id+","+pw);
 
    Integer success=null;
-   Connection con = null; 
+
    PreparedStatement pstmt = null; 
    ResultSet rs=null;
    
@@ -22,6 +23,7 @@ String id=(String)request.getParameter("id");
    String query="SELECT pw,name FROM user_db WHERE  id=?";
    String dbpw=null;
    String username=null;
+   Integer measureCount=0;//측정 결과 개수
    try(Connection conn=pool.getConnection()){
 	   pstmt=conn.prepareStatement(query);
 	   pstmt.setString(1,id);
@@ -38,21 +40,28 @@ String id=(String)request.getParameter("id");
    }}
    catch(SQLException e){e.printStackTrace();}
    
+
+
    JSONObject MainJson=new JSONObject();
    JSONObject Json=new JSONObject();
    JSONArray jArray=new JSONArray();
    
-Json.put("id",id);
-Json.put("pw",pw);
-Json.put("name",username);
-Json.put("success",success);
+   Json.put("id",id);
+   Json.put("pw",pw);
+   Json.put("name",username);
+    Json.put("success",success);
+   Json.put("measureCount",measureCount);
+   
 
-jArray.add(0,Json);
+   jArray.add(0,Json);
+   
 
-MainJson.put("dataSend",jArray);
+   
+
+  MainJson.put("dataSend",jArray);
    out.print(MainJson.toJSONString());
    out.flush();
-   %>
+ %>
 
 </body>
 </html>
